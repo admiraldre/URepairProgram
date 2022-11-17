@@ -63,39 +63,59 @@ float * c_readfile_price()
 	return arr;
 }
 
-void heapify(float arr[], int N, int i)
+float* c_readfile_location ()
 {
-	int largest = i; // Initialize largest as root
-	int l = 2 * i + 1; // left = 2*i + 1
-	int r = 2 * i + 2; // right = 2*i + 2
+	ifstream mydata;
+	mydata.open("talent.dat");
+	while (!mydata.eof())
+	{
+		mydata >> cid >> cfirst_name >> clast_name >> cprice >> crating >> clocation >> cstate;
 
-	if (l < N && arr[l] > arr[largest])
-		largest = l;
+		arr[i] = clocation;
+		i++;
 
-	if (r < N && arr[r] > arr[largest])
-		largest = r;
+	}
+	//mydata.close();
 
+	return arr;
+}
+
+void heapify(float arr[], int N, int i) {
+	// Find largest among root, left child and right child
+	int largest = i;
+	int left = 2 * i + 1;
+	int right = 2 * i + 2;
+
+	if (left < N && arr[left] < arr[largest])
+		largest = left;
+
+	if (right < N && arr[right] < arr[largest])
+		largest = right;
+
+	// Swap and continue heapifying if root is not largest
 	if (largest != i) {
 		swap(arr[i], arr[largest]);
-
 		heapify(arr, N, largest);
 	}
 }
 
-void buildHeap(float arr[], int N)
-{
-
-	int startIdx = (N / 2) - 1;
-
-
-	for (int i = startIdx; i >= 0; i--) {
+void heapSort(float arr[], int N) {
+	// Build max heap
+	for (int i = N / 2 - 1; i >= 0; i--)
 		heapify(arr, N, i);
+
+	// Heap sort
+	for (int i = N - 1; i >= 0; i--) {
+		swap(arr[0], arr[i]);
+
+		// Heapify root element to get highest element at root again
+		heapify(arr, i, 0);
 	}
 }
 
 void printHeap_rating(float arr[], int N)
 {
-	cout << "Rating of talent :\n";
+	cout << "Sorted by rating :\n";
 
 	for (int i = 0; i < N; ++i)
 		cout << arr[i] << " ";
@@ -104,7 +124,16 @@ void printHeap_rating(float arr[], int N)
 
 void printHeap_price(float arr[], int N)
 {
-	cout << "Rating of price :\n";
+	cout << "Sorted by price :\n";
+
+	for (int i = 0; i < N; ++i)
+		cout << arr[i] << " ";
+	cout << "\n";
+}
+
+void printHeap_location(float arr[], int N)
+{
+	cout << "Sorted by location :\n";
 
 	for (int i = 0; i < N; ++i)
 		cout << arr[i] << " ";
@@ -134,6 +163,7 @@ int Client::for_client()
 		//this is not need just for assignment
 		cout << "1 for sorting by rating" << endl;
 		cout << "2 for sorting by price" << endl;
+		cout << "3 for sorting by location" << endl;
 		cout << "choose :";
 		cin >> cpick;
 
@@ -146,7 +176,7 @@ int Client::for_client()
 				arr2[j] = new_a[j];
 			}
 
-			buildHeap(arr2, N);
+			heapSort(arr2, N);
 			printHeap_rating(arr2, N);
 		}
 		else if (cpick == "2")
@@ -158,8 +188,21 @@ int Client::for_client()
 				arr2[j] = new_a[j];
 			}
 
-			buildHeap(arr2, N);
+			heapSort(arr2, N);
 			printHeap_price(arr2, N);
+
+		}
+		else if (cpick == "3")
+		{
+			float* new_a = c_readfile_location();
+
+			for (int j = 0; j < 5; j++)
+			{
+				arr2[j] = new_a[j];
+			}
+
+			heapSort(arr2, N);
+			printHeap_location(arr2, N);
 		}
 		else 
 			cout << "invaild chose" << endl;
