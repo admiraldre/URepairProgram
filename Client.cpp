@@ -5,8 +5,8 @@
 #include <sstream>
 using namespace std;
 
-string ctalent_id, cpick;
-string cid, cfirst_name, clast_name, cstate;
+string c_talent_id, c_pick;
+string c_id, c_first_name, c_last_name, c_state;
 float cprice, crating, clocation;
 float arr[5];
 
@@ -20,10 +20,9 @@ void a_read_all_file()
 	mydata.open("talent.dat");
 	while (!mydata.eof())
 	{
-		mydata >> cid >> cfirst_name >> clast_name >> cprice >> crating >> clocation >> cstate;
+		mydata >> c_id >> c_first_name >> c_last_name >> cprice >> crating >> clocation >> c_state;
 
-		if (cstate=="Available")
-			cout << cid << " " << cfirst_name << " " << clast_name << " $" << cprice << " rating :" << crating << " Distance: " << clocation << "km " << "is " << cstate << endl;
+		cout << c_id << " " << c_first_name << " " << c_last_name << " $" << cprice << " rating :" << crating << " Distance: " << clocation << "km " << "is " << c_state << endl;
 
 	}
 	mydata.close();
@@ -35,7 +34,7 @@ float * c_readfile_rating()
 	mydata.open("talent.dat");
 	while (!mydata.eof())
 	{
-		mydata >> cid >> cfirst_name >> clast_name >>cprice >> crating >> clocation >> cstate;
+		mydata >> c_id >> c_first_name >> c_last_name >>cprice >> crating >> clocation >> c_state;
 	
 		arr[i]=crating;
 		i++;
@@ -52,7 +51,7 @@ float * c_readfile_price()
 	mydata.open("talent.dat");
 	while (!mydata.eof())
 	{
-		mydata >> cid >> cfirst_name >> clast_name >> cprice >> crating >> clocation >> cstate;
+		mydata >> c_id >> c_first_name >> c_last_name >> cprice >> crating >> clocation >> c_state;
 
 		arr[i] = cprice;
 		i++;
@@ -69,7 +68,7 @@ float* c_readfile_location ()
 	mydata.open("talent.dat");
 	while (!mydata.eof())
 	{
-		mydata >> cid >> cfirst_name >> clast_name >> cprice >> crating >> clocation >> cstate;
+		mydata >> c_id >> c_first_name >> c_last_name >> cprice >> crating >> clocation >> c_state;
 
 		arr[i] = clocation;
 		i++;
@@ -165,9 +164,9 @@ int Client::for_client()
 		cout << "2 for sorting by price" << endl;
 		cout << "3 for sorting by location" << endl;
 		cout << "choose :";
-		cin >> cpick;
+		cin >> c_pick;
 
-		if (cpick == "1")
+		if (c_pick == "1")
 		{
 			float* new_a = c_readfile_rating();
 
@@ -179,7 +178,7 @@ int Client::for_client()
 			heapSort(arr2, N);
 			printHeap_rating(arr2, N);
 		}
-		else if (cpick == "2")
+		else if (c_pick == "2")
 		{
 			float* new_a = c_readfile_price();
 
@@ -192,7 +191,7 @@ int Client::for_client()
 			printHeap_price(arr2, N);
 
 		}
-		else if (cpick == "3")
+		else if (c_pick == "3")
 		{
 			float* new_a = c_readfile_location();
 
