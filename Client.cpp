@@ -8,11 +8,11 @@ using namespace std;
 string c_talent_id, c_pick;
 string c_id, c_first_name, c_last_name, c_state;
 float c_price, c_rating, c_location;
-float arr[10];
+float arr[200]; //set the number of talent to a max of 200
 
 
 int i = 0;
-int N = 10;
+int N = 200; //set the number of talent to a max of 200
 
 void a_read_all_file()
 {
@@ -95,7 +95,7 @@ void heapify(float arr[], string arr2[], int N, int i) {
 	if (largest != i) {
 		swap(arr[i], arr[largest]);
 		swap(arr2[i], arr2[largest]);
-		heapify(arr,arr2, N, largest);
+		heapify(arr, arr2, N, largest);
 	}
 
 }
@@ -103,7 +103,7 @@ void heapify(float arr[], string arr2[], int N, int i) {
 void heapSort(float arr[], string arr2[], int N) {
 	// Build max heap
 	for (int i = N / 2 - 1; i >= 0; i--)
-		heapify(arr,arr2, N, i);
+		heapify(arr, arr2, N, i);
 
 
 	// Heap sort
@@ -112,7 +112,7 @@ void heapSort(float arr[], string arr2[], int N) {
 		swap(arr2[0], arr2[i]);
 
 		// Heapify root element to get highest element at root again
-		heapify(arr,arr2, i, 0);
+		heapify(arr, arr2, i, 0);
 	}
 }
 
@@ -190,10 +190,11 @@ Client::Client() {
 
 int Client::for_client()
 {
+
 	float* new_a;
-	float arr2[10];
+	float arr2[200]; //set the number of talent to a max of 200
 	int w = 0;
-	string arr_c_id[10];
+	string arr_c_id[200]; //set the number of talent to a max of 200
 	string password_c;
 	cout << "Enter Client password (1234) :";
 	cin >> password_c;
@@ -217,7 +218,7 @@ int Client::for_client()
 		{
 			mydata >> c_id >> c_first_name >> c_last_name >> c_price >> c_rating >> c_location >> c_state;
 
-			arr_c_id[w] = c_id;
+			arr_c_id[w] = c_id; //add all talent id into an array
 			w++;
 
 		}
@@ -234,7 +235,7 @@ int Client::for_client()
 
 			heapSort(arr2, arr_c_id, N);
 			printHeap_rating(arr_c_id, N);
-			
+
 		}
 		else if (c_pick == "2")
 		{
