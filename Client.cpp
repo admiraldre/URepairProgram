@@ -103,8 +103,6 @@ void heapSort(float arr[], int N) {
 	// Build max heap
 	for (int i = N / 2 - 1; i >= 0; i--)
 		heapify(arr, N, i);
-
-	ifstream mydata;
 	
 
 	// Heap sort
