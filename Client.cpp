@@ -118,6 +118,7 @@ void heapSort(float arr[], int N) {
 
 void printHeap_rating(float arr[], int N)
 {
+	cout << endl;
 	cout << "Sorted by rating :\n";
 
 	for (int i = 0; i < N; ++i)
@@ -139,6 +140,7 @@ void printHeap_rating(float arr[], int N)
 
 void printHeap_price(float arr[], int N)
 {
+	cout << endl;
 	cout << "Sorted by price :\n";
 
 	for (int i = 0; i < N; ++i)
@@ -160,6 +162,7 @@ void printHeap_price(float arr[], int N)
 
 void printHeap_location(float arr[], int N)
 {
+	cout << endl;
 	cout << "Sorted by location :\n";
 
 	for (int i = 0; i < N; ++i)
