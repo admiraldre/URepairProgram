@@ -7,7 +7,7 @@ using namespace std;
 
 string c_talent_id, c_pick;
 string c_id, c_first_name, c_last_name, c_state;
-float cprice, crating, clocation;
+float c_price, c_rating, c_location;
 float arr[5];
 
 
@@ -20,40 +20,23 @@ void a_read_all_file()
 	mydata.open("talent.dat");
 	while (!mydata.eof())
 	{
-		mydata >> c_id >> c_first_name >> c_last_name >> cprice >> crating >> clocation >> c_state;
+		mydata >> c_id >> c_first_name >> c_last_name >> c_price >> c_rating >> c_location >> c_state;
 
-		cout << c_id << " " << c_first_name << " " << c_last_name << " $" << cprice << " rating :" << crating << " Distance: " << clocation << "km " << "is " << c_state << endl;
+		cout << c_id << " " << c_first_name << " " << c_last_name << " $" << c_price << " rating :" << c_rating << " Distance: " << c_location << "km " << "is " << c_state << endl;
 
 	}
 	mydata.close();
 }
 
-float * c_readfile_rating()
+float* c_readfile_rating()
 {
 	ifstream mydata;
 	mydata.open("talent.dat");
 	while (!mydata.eof())
 	{
-		mydata >> c_id >> c_first_name >> c_last_name >>cprice >> crating >> clocation >> c_state;
-	
-		arr[i]=crating;
-		i++;
+		mydata >> c_id >> c_first_name >> c_last_name >> c_price >> c_rating >> c_location >> c_state;
 
-	}
-	//mydata.close();
-	
-	return arr;
-}
-
-float * c_readfile_price()
-{
-	ifstream mydata;
-	mydata.open("talent.dat");
-	while (!mydata.eof())
-	{
-		mydata >> c_id >> c_first_name >> c_last_name >> cprice >> crating >> clocation >> c_state;
-
-		arr[i] = cprice;
+		arr[i] = c_rating;
 		i++;
 
 	}
@@ -62,15 +45,32 @@ float * c_readfile_price()
 	return arr;
 }
 
-float* c_readfile_location ()
+float* c_readfile_price()
 {
 	ifstream mydata;
 	mydata.open("talent.dat");
 	while (!mydata.eof())
 	{
-		mydata >> c_id >> c_first_name >> c_last_name >> cprice >> crating >> clocation >> c_state;
+		mydata >> c_id >> c_first_name >> c_last_name >> c_price >> c_rating >> c_location >> c_state;
 
-		arr[i] = clocation;
+		arr[i] = c_price;
+		i++;
+
+	}
+	//mydata.close();
+
+	return arr;
+}
+
+float* c_readfile_location()
+{
+	ifstream mydata;
+	mydata.open("talent.dat");
+	while (!mydata.eof())
+	{
+		mydata >> c_id >> c_first_name >> c_last_name >> c_price >> c_rating >> c_location >> c_state;
+
+		arr[i] = c_location;
 		i++;
 
 	}
@@ -96,12 +96,16 @@ void heapify(float arr[], int N, int i) {
 		swap(arr[i], arr[largest]);
 		heapify(arr, N, largest);
 	}
+	
 }
 
 void heapSort(float arr[], int N) {
 	// Build max heap
 	for (int i = N / 2 - 1; i >= 0; i--)
 		heapify(arr, N, i);
+
+	ifstream mydata;
+	
 
 	// Heap sort
 	for (int i = N - 1; i >= 0; i--) {
@@ -117,8 +121,20 @@ void printHeap_rating(float arr[], int N)
 	cout << "Sorted by rating :\n";
 
 	for (int i = 0; i < N; ++i)
-		cout << arr[i] << " ";
-	cout << "\n";
+	{
+		ifstream mydata;
+		mydata.open("talent.dat");
+		while (!mydata.eof())
+		{
+			mydata >> c_id >> c_first_name >> c_last_name >> c_price >> c_rating >> c_location >> c_state;
+			if (c_rating == arr[i])
+			{
+				cout << c_id << " " << c_first_name << " " << c_last_name << " $" << c_price << " rating :" << c_rating << " Distance: " << c_location << "km " << "is " << c_state << endl;
+			}
+
+		}
+		mydata.close();
+	}
 }
 
 void printHeap_price(float arr[], int N)
@@ -126,8 +142,20 @@ void printHeap_price(float arr[], int N)
 	cout << "Sorted by price :\n";
 
 	for (int i = 0; i < N; ++i)
-		cout << arr[i] << " ";
-	cout << "\n";
+	{
+		ifstream mydata;
+		mydata.open("talent.dat");
+		while (!mydata.eof())
+		{
+			mydata >> c_id >> c_first_name >> c_last_name >> c_price >> c_rating >> c_location >> c_state;
+			if (c_price == arr[i])
+			{
+				cout << c_id << " " << c_first_name << " " << c_last_name << " $" << c_price << " rating :" << c_rating << " Distance: " << c_location << "km " << "is " << c_state << endl;
+			}
+
+		}
+		mydata.close();
+	}
 }
 
 void printHeap_location(float arr[], int N)
@@ -135,8 +163,20 @@ void printHeap_location(float arr[], int N)
 	cout << "Sorted by location :\n";
 
 	for (int i = 0; i < N; ++i)
-		cout << arr[i] << " ";
-	cout << "\n";
+	{
+		ifstream mydata;
+		mydata.open("talent.dat");
+		while (!mydata.eof())
+		{
+			mydata >> c_id >> c_first_name >> c_last_name >> c_price >> c_rating >> c_location >> c_state;
+			if (c_location == arr[i])
+			{
+				cout << c_id << " " << c_first_name << " " << c_last_name << " $" << c_price << " rating :" << c_rating << " Distance: " << c_location << "km " << "is " << c_state << endl;
+			}
+
+		}
+		mydata.close();
+	}
 }
 
 
@@ -203,9 +243,9 @@ int Client::for_client()
 			heapSort(arr2, N);
 			printHeap_location(arr2, N);
 		}
-		else 
+		else
 			cout << "invaild chose" << endl;
-			
+
 		//stop here
 	}
 	else
