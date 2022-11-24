@@ -6,8 +6,8 @@
 using namespace std;
 
 string password_a;
-string a_talent_id,a_pick;
-string a_id, a_first_name, a_last_name, a_state;
+string a_talent_id, a_pick;
+string a_id, a_first_name, a_last_name, a_state, a_email;
 float a_price, a_rating, a_location;
 
 Admin::Admin() {
@@ -20,21 +20,47 @@ void a_readfile()
 	mydata.open("talent.dat");
 	while (!mydata.eof())
 	{
-		mydata >> a_id >> a_first_name >> a_last_name >> a_price >> a_rating >> a_location >> a_state;
+		mydata >> a_id >> a_first_name >> a_last_name >> a_price >> a_rating >> a_location >> a_state >> a_email;
 
 		if (a_id == a_talent_id)
 		{
-			cout << a_id << " " << a_first_name << " " << a_last_name << " $" << a_price << " rating :" << a_rating << " Distance: " << a_location << "km " << "is " << a_state << endl;
+			cout << a_id << " " << a_first_name << " " << a_last_name << " $" << a_price << " rating :" << a_rating << " Distance: " << a_location << "km " << "is " << a_state << " Email :" << a_email << endl;
 		}
-		
+
 
 	}
 	mydata.close();
 }
 
+void a_chgfile()
+{
+	fstream mydata;
+	mydata.open("talent.dat");
+	while (!mydata.eof())
+	{
+		mydata >> a_id >> a_first_name >> a_last_name >> a_price >> a_rating >> a_location >> a_state >> a_email;
+
+		if (a_id == a_talent_id)
+		{
+			cout << a_id << " " << a_first_name << " " << a_last_name << " $" << a_price << " rating :" << a_rating << " Distance: " << a_location << "km " << "is " << a_state << " Email :" << a_email << endl;
+
+			cout << "New price: ";
+			cin >> a_price;
+			cout << "New location: ";
+			cin >> a_location;
+			cout << "(Available or Booked ): ";
+			cin >> a_state;
+			cout << "New email: ";
+			cin >> a_email;
+		}
+
+	}
+		mydata.close();
+}
+
 int Admin::for_admin()
 {
-	
+
 	cout << "Enter Admin password (1234) :";
 	cin >> password_a;
 
@@ -55,11 +81,12 @@ int Admin::for_admin()
 		else if (a_pick == "2")
 		{
 			cout << endl;
+			a_chgfile();
 		}
 		else
 			cout << "invaild chose" << endl;
-		
-		
+
+
 
 	}
 	else
