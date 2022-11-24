@@ -6,7 +6,7 @@
 using namespace std;
 
 string c_talent_id, c_pick;
-string c_id, c_first_name, c_last_name, c_state;
+string c_id, c_first_name, c_last_name, c_state, c_email;
 float c_price, c_rating, c_location;
 float arr[200]; //set the number of talent to a max of 200
 
@@ -20,9 +20,9 @@ void a_read_all_file()
 	mydata.open("talent.dat");
 	while (!mydata.eof())
 	{
-		mydata >> c_id >> c_first_name >> c_last_name >> c_price >> c_rating >> c_location >> c_state;
+		mydata >> c_id >> c_first_name >> c_last_name >> c_price >> c_rating >> c_location >> c_state>> c_email;
 
-		cout << c_id << " " << c_first_name << " " << c_last_name << " $" << c_price << " rating :" << c_rating << " Distance: " << c_location << "km " << "is " << c_state << endl;
+		cout << c_id << " " << c_first_name << " " << c_last_name << " $" << c_price << " rating :" << c_rating << " Distance: " << c_location << "km " << "is " << c_state << " Email :" << c_email << endl;
 
 	}
 	mydata.close();
@@ -34,7 +34,7 @@ float* c_readfile_rating()
 	mydata.open("talent.dat");
 	while (!mydata.eof())
 	{
-		mydata >> c_id >> c_first_name >> c_last_name >> c_price >> c_rating >> c_location >> c_state;
+		mydata >> c_id >> c_first_name >> c_last_name >> c_price >> c_rating >> c_location >> c_state >> c_email;
 
 		arr[i] = c_rating;
 		i++;
@@ -51,7 +51,7 @@ float* c_readfile_price()
 	mydata.open("talent.dat");
 	while (!mydata.eof())
 	{
-		mydata >> c_id >> c_first_name >> c_last_name >> c_price >> c_rating >> c_location >> c_state;
+		mydata >> c_id >> c_first_name >> c_last_name >> c_price >> c_rating >> c_location >> c_state >> c_email;
 
 		arr[i] = c_price;
 		i++;
@@ -68,7 +68,7 @@ float* c_readfile_location()
 	mydata.open("talent.dat");
 	while (!mydata.eof())
 	{
-		mydata >> c_id >> c_first_name >> c_last_name >> c_price >> c_rating >> c_location >> c_state;
+		mydata >> c_id >> c_first_name >> c_last_name >> c_price >> c_rating >> c_location >> c_state >> c_email;
 
 		arr[i] = c_location;
 		i++;
@@ -127,10 +127,10 @@ void printHeap_rating(string arr[], int N)
 		mydata.open("talent.dat");
 		while (!mydata.eof())
 		{
-			mydata >> c_id >> c_first_name >> c_last_name >> c_price >> c_rating >> c_location >> c_state;
+			mydata >> c_id >> c_first_name >> c_last_name >> c_price >> c_rating >> c_location >> c_state >> c_email;
 			if (c_id == arr[i])
 			{
-				cout << c_id << " " << c_first_name << " " << c_last_name << " $" << c_price << " rating :" << c_rating << " Distance: " << c_location << "km " << "is " << c_state << endl;
+				cout << c_id << " " << c_first_name << " " << c_last_name << " $" << c_price << " rating :" << c_rating << " Distance: " << c_location << "km " << "is " << c_state << " Email :" << c_email << endl;
 			}
 
 		}
@@ -149,10 +149,10 @@ void printHeap_price(string arr[], int N)
 		mydata.open("talent.dat");
 		while (!mydata.eof())
 		{
-			mydata >> c_id >> c_first_name >> c_last_name >> c_price >> c_rating >> c_location >> c_state;
+			mydata >> c_id >> c_first_name >> c_last_name >> c_price >> c_rating >> c_location >> c_state >> c_email;
 			if (c_id == arr[i])
 			{
-				cout << c_id << " " << c_first_name << " " << c_last_name << " $" << c_price << " rating :" << c_rating << " Distance: " << c_location << "km " << "is " << c_state << endl;
+				cout << c_id << " " << c_first_name << " " << c_last_name << " $" << c_price << " rating :" << c_rating << " Distance: " << c_location << "km " << "is " << c_state << " Email :" << c_email << endl;
 			}
 
 		}
@@ -171,10 +171,10 @@ void printHeap_location(string arr[], int N)
 		mydata.open("talent.dat");
 		while (!mydata.eof())
 		{
-			mydata >> c_id >> c_first_name >> c_last_name >> c_price >> c_rating >> c_location >> c_state;
+			mydata >> c_id >> c_first_name >> c_last_name >> c_price >> c_rating >> c_location >> c_state >> c_email;
 			if (c_id == arr[i])
 			{
-				cout << c_id << " " << c_first_name << " " << c_last_name << " $" << c_price << " rating :" << c_rating << " Distance: " << c_location << "km " << "is " << c_state << endl;
+				cout << c_id << " " << c_first_name << " " << c_last_name << " $" << c_price << " rating :" << c_rating << " Distance: " << c_location << "km " << "is " << c_state << " Email :" << c_email << endl;
 			}
 
 		}
@@ -216,7 +216,7 @@ int Client::for_client()
 		mydata.open("talent.dat");
 		while (!mydata.eof())
 		{
-			mydata >> c_id >> c_first_name >> c_last_name >> c_price >> c_rating >> c_location >> c_state;
+			mydata >> c_id >> c_first_name >> c_last_name >> c_price >> c_rating >> c_location >> c_state >> c_email;
 
 			arr_c_id[w] = c_id; //add all talent id into an array
 			w++;
