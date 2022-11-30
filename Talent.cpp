@@ -8,8 +8,8 @@ using namespace std;
 
 string password_t;
 string t_talent_id, t_pick, t2_pick,t_choose,textline;
-string t_id, t_first_name, t_last_name, t_state, t_email;
-float t_price, t_rating, t_location, t2_location;
+string t_id, t_first_name, t_last_name, t_state, t_email, t_services, t2_services;
+float t_price, t_rating;
 
 Talent::Talent()
 {
@@ -20,13 +20,12 @@ void t_readfile()
 {
 	ifstream mydata;
 	mydata.open("talent.dat");
-	while (!mydata.eof())
+	while (mydata >> t_id >> t_first_name >> t_last_name >> t_price >> t_rating >> t_services >> t_state >> t_email)
 	{
-		mydata >> t_id >> t_first_name >> t_last_name >> t_price >> t_rating >> t_location >> t_state>>t_email;
 
 		if (t_id == t_talent_id)
 		{
-			cout << t_id << " " << t_first_name << " " << t_last_name << " $" << t_price << " rating :" << t_rating << " Distance: " << t_location << "km " << "is " << t_state <<" Email :"<<t_email<< endl;
+			cout << t_id << " " << t_first_name << " " << t_last_name << " $" << t_price << " rating :" << t_rating << " Services: " << t_services << " " << "is " << t_state <<" Email :"<<t_email<< endl;
 		}
 
 
@@ -46,16 +45,79 @@ void t_new_talent()
 	cin >> t_last_name;
 	cout << "Price :";
 	cin >> t_price;
-	t_rating = 5; //setting average rating
-	t_location = rand() % 900;
+	t_rating = 5.0; //setting average rating
+	cout << "Services :";
+	cin >> t_services;
 	t_state = "Available"; //setting state to available as a new talent
 	cout << "Enter email :";
 	cin >> t_email;
 	std::ostringstream text_join;
-	text_join <<t_id<<" "<< t_first_name<< " "<< t_last_name << " "<< t_price << " " << t_rating << " " << t_location<<" "<< t_state<<" "<<t_email;
+	text_join <<"\n"<< t_id << " " << t_first_name << " " << t_last_name << " " << t_price << " " << t_rating << " " << t_services << " " << t_state << " " << t_email << "\n";
 	std::string textline = text_join.str();
-	mydata << "\n"<<textline;
+	mydata << textline;
 	mydata.close();
+}
+
+void t_chgfile()
+{
+	ifstream mydata;
+	mydata.open("talent.dat");
+	ofstream c_data;
+	c_data.open("c_talent.dat");
+	while (mydata >> t_id >> t_first_name >> t_last_name >> t_price >> t_rating >> t_services >> t_state >> t_email)
+	{
+
+		if (t_id != t_talent_id)
+		{
+			c_data << t_id << " " << t_first_name << " " << t_last_name << " " << t_price << " " << t_rating << " " << t_services << " " << t_state << " " << t_email << endl;
+
+		}
+		else
+		{
+			c_data.close();
+			c_data.open("c_talent.dat", std::ios::app);
+			cout << t_id << " " << t_first_name << " " << t_last_name << " $" << t_price << " rating :" << t_rating << " Services: " << t_services << " " << "is " << t_state << " Email :" << t_email << endl;
+
+			cout << "New price: ";
+			cin >> t_price;
+			cout << "New Services: ";
+			cin >> t_services;
+			cout << "(Available or Booked ): ";
+			cin >> t_state;
+			cout << "New email: ";
+			cin >> t_email;
+			std::ostringstream text_join;
+			text_join << t_id << " " << t_first_name << " " << t_last_name << " " << t_price << " " << t_rating << " " << t_services << " " << t_state << " " << t_email << endl;
+			std::string textline = text_join.str();
+			c_data << textline;
+		}
+
+	}
+
+	mydata.close();
+	c_data.close();
+
+	//std::rename("c_talent.dat", "talent.dat");
+
+	ifstream in("c_talent.dat");
+	ofstream out1("talent.dat");
+
+	while (in >> t_id >> t_first_name >> t_last_name >> t_price >> t_rating >> t_services >> t_state >> t_email)
+	{
+		// string to extract line from 
+		// file.txt
+		string text;
+
+		// Writing the extracted line in 
+		// file2.txt
+		out1 << t_id << " " << t_first_name << " " << t_last_name << " " << t_price << " " << t_rating << " " << t_services << " " << t_state << " " << t_email << endl;
+	}
+	in.close();
+	out1.close();
+
+	std::ofstream ofs;
+	ofs.open("c_talent.dat", std::ofstream::out | std::ofstream::trunc);
+	ofs.close();
 }
 
 
@@ -89,15 +151,7 @@ int Talent::for_talent()
 			}
 			else if (t_pick == "2")
 			{
-				cout << endl;
-				cout << "1 for editing distance" << endl;
-				cout << "2 for editing price" << endl;
-				cout << "3 for setting status to 'Booked'" << endl;
-				cout << "4 for setting status to 'Available'" << endl;
-				cout << "choose :";
-				cin >> t2_pick;
-
-
+				t_chgfile();
 			}
 			else
 				cout << "invaild chose" << endl;
