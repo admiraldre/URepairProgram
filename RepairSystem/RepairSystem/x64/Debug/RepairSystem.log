@@ -1,0 +1,17 @@
+﻿  MyForm.cpp
+C:\Users\r-yam\OneDrive\Desktop\School\Year 3\Yasin\RepairSystem\RepairSystem\MyForm2.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\r-yam\OneDrive\Desktop\School\Year 3\Yasin\RepairSystem\RepairSystem\MyForm2.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\r-yam\OneDrive\Desktop\School\Year 3\Yasin\RepairSystem\RepairSystem\MyForm4.h(5,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\r-yam\OneDrive\Desktop\School\Year 3\Yasin\RepairSystem\RepairSystem\MyForm.cpp(8,1): warning C4829: Possibly incorrect parameters to function main. Consider 'int main(Platform::Array<Platform::String^>^ argv)'
+  MyForm2.cpp
+C:\Users\r-yam\OneDrive\Desktop\School\Year 3\Yasin\RepairSystem\RepairSystem\MyForm2.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\r-yam\OneDrive\Desktop\School\Year 3\Yasin\RepairSystem\RepairSystem\MyForm2.h(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\r-yam\OneDrive\Desktop\School\Year 3\Yasin\RepairSystem\RepairSystem\MyForm4.h(5,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  MyForm4.cpp
+C:\Users\r-yam\OneDrive\Desktop\School\Year 3\Yasin\RepairSystem\RepairSystem\MyForm4.h(5,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  MyForm5.cpp
+  Generating Code...
+C:\Users\r-yam\OneDrive\Desktop\School\Year 3\Yasin\RepairSystem\RepairSystem\MyForm3.h(293): warning C4700: uninitialized local variable 'id' used
+C:\Users\r-yam\OneDrive\Desktop\School\Year 3\Yasin\RepairSystem\RepairSystem\MyForm3.h(293): warning C4700: uninitialized local variable 'id' used
+  MyForm.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  RepairSystem.vcxproj -> C:\Users\r-yam\OneDrive\Desktop\School\Year 3\Yasin\RepairSystem\x64\Debug\RepairSystem.exe
